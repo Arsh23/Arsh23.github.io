@@ -1,0 +1,197 @@
+
+
+/*------------------------------------------------------------------------------------*/
+.menu
+{
+	position: absolute;
+	left: 1089px;
+    top: 300px;
+}
+
+.menu-slant
+{
+	width: 30px;
+    height: 70px;
+    background-color: #3a527e;
+    transform: skew(-15deg);
+    z-index: 2;
+    position: absolute;
+
+}
+
+.menu-static
+{
+	width: 200px;
+    height: 70px;
+    background-color: #3a527e;
+    left: 12px;
+    z-index: 3;
+    position: absolute;
+
+}
+
+.menu-movable-pt1
+{
+	width: 10px;
+    height: 60px;
+    background-color: #e88e53;
+    /*content:url(../images/menu-back-2.jpg);*/
+    transform: skew(-15deg);
+    left: -5px;
+    top: 5px;
+    z-index: 1;
+    position: absolute;
+
+}
+
+.menu-movable-pt2
+{
+	width: 10px;
+    height: 70px;
+    background-color: #3a527e;
+    transform: skew(-15deg);
+    left: -15px;
+    z-index: 2;
+    position: absolute;
+
+}
+/*------------------------------------------------------------------------------------*/
+.menu-icon
+{
+	height: 45px;
+	width: 45px;
+	/*background-color: red;*/
+	position: absolute;
+	z-index: 6;
+    opacity: 0.75;
+}
+.menu-icon-pos
+{
+	left: 2px;
+	top: 7px;
+	position: absolute;
+}
+.menu-icon-stats
+{
+	left: 10px;
+	top: 12.5px;
+}
+.menu-icon-contact
+{
+	left: 72px;
+	top: 12.5px;
+}
+.menu-icon-options
+{
+	left: 134px;
+	top: 12.5px;
+}
+/*------------------------------------------------------------------------------------*/
+.menu-options-div
+{
+    width: 250px;
+    height: 70px;
+    background-color: green;
+    left: -275px;
+    top: 73px;
+    z-index: 3;
+    position: absolute;
+}
+
+.menu-options-pos
+{
+    left: 2px;
+    top: 7px;
+    position: absolute;
+}
+
+.menu-options-aboutme
+{
+    left: 10px;
+    top: 12.5px;
+}
+
+.menu-options-resume
+{
+    left: 72px;
+    top: 12.5px;
+}
+
+.menu-options-projects
+{
+    left: 134px;
+    top: 12.5px;
+}
+
+.menu-options-skills
+{
+    left: 196px;
+    top: 12.5px;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+.menu-contact-div
+{
+    width: 250px;
+    height: 70px;
+    background-color: purple;
+    left: -275px;
+    top: 73px;
+    z-index: 3;
+    position: absolute;
+}
+
+.menu-contact-pos
+{
+    left: 2px;
+    top: 7px;
+    position: absolute;
+}
+
+.menu-contact-github
+{
+    left: 10px;
+    top: 12.5px;
+}
+
+.menu-contact-gmail
+{
+    left: 72px;
+    top: 12.5px;
+}
+
+.menu-contact-linkedin
+{
+    left: 134px;
+    top: 12.5px;
+}
+
+.menu-contact-pm
+{
+    left: 196px;
+    top: 12.5px;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+.menu-tooltip
+{
+    position: absolute;
+    z-index: -1;
+    height: 20px;
+    width: 190px;
+    left: 22px;
+    background-color: #e88e53;
+    border-radius: 2px;
+    opacity: 0.40;
+}
+
+.menu-tooltip-text
+{
+    color: black;
+    position: absolute;
+    top: -16px;
+    left: 2px;
+    font-family: 'Lato', sans-serif;
+}
