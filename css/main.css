@@ -3,9 +3,11 @@
 /*------------------------------------------------------------------------------------*/
 .menu
 {
-	position: absolute;
-	left: 1089px;
-    top: 300px;
+	position: fixed;
+	/*left: 1089px;
+    top: 300px;*/
+    right: 200px;
+    bottom: 70px;
 }
 
 .menu-slant
