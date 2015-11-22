@@ -123,12 +123,12 @@ function animate_tooltip(event)
 	{
 		$('.menu-tooltip-text').html(event.data.text);
 		$('.menu-tooltip').stop(true,true).animate({top: '-=20px'},100);
-		$(event.data.obj).css('opacity','1');
+		$(event.data.obj).css('color','#ffffff');
 	}
 	else if(event.data.action == 'down')
 	{
 		$('.menu-tooltip').stop(true,true).animate({top: '+=20px'},100);
-		$(event.data.obj).css('opacity','0.75');	
+		$(event.data.obj).css('color','#000000');	
 	}
 }
 

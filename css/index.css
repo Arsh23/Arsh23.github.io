@@ -1,0 +1,26 @@
+
+
+.main-heading
+{
+	font-size: 70px;
+	font-family: 'Dosis' ;
+	padding-right: 80px;
+	text-align: right;
+}
+.sec-heading
+{
+	font-size: 24px;
+	font-family: 'Dosis' ;
+	right: 110px;
+	top: 90px;
+	position: absolute;
+}
+
+.third-heading
+{
+	font-size: 24px;
+	font-family: 'Dosis' ;
+	right: 110px;
+	top: 130px;
+	position: absolute;
+}

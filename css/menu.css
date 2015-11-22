@@ -3,6 +3,7 @@
 /*------------------------------------------------------------------------------------*/
 .menu
 {
+
 	position: fixed;
 	/*left: 1089px;
     top: 300px;*/
@@ -62,10 +63,11 @@
 {
 	height: 45px;
 	width: 45px;
+    color: #000000;
 	/*background-color: red;*/
 	position: absolute;
 	z-index: 6;
-    opacity: 0.75;
+    /*opacity: 0.75;*/
 }
 .menu-icon-pos
 {
@@ -190,9 +192,9 @@
     height: 20px;
     width: 190px;
     left: 22px;
-    background-color: #e88e53;
+    background-color: #999999;
     border-radius: 2px;
-    opacity: 0.40;
+    /*opacity: 0.65;*/
 }
 
 .menu-tooltip-text
@@ -200,10 +202,12 @@
     width: 170px;
     color: black;
     position: absolute;
-   /* top: -16px;*/bottom: -10px;
+   /* top: -16px;*/
+    bottom: -10px;
     left: 2px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Dosis', sans-serif;
     text-align: right;
+    padding-right: 5px;
 }
 
 /*------------------------------------------------------------------------------------*/
