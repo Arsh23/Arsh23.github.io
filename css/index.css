@@ -1,3 +1,4 @@
+
 #bg {
   position: fixed; 
   top: -50%; 
@@ -19,12 +20,13 @@
 .headingtext
 {
 	position: relative;
-	height: 180px;
+	/*height: 180px;*/
+	/*background-color: red;*/
 }
 
 .main-heading
 {
-	font-size: 70px;
+	font-size: 4.375em;
 	font-family: 'Dosis' ;
 	font-weight: 500;
 	padding-right: 80px;
@@ -34,11 +36,11 @@
 }
 .sec-heading
 {
-	font-size: 24px;
+	font-size: 1.5em;
 	font-family: 'Dosis' ;
 	font-weight: 500;
 	right: 110px;
-	top: 90px;
+	top: 0px;
 	position: absolute;
 	/*color:  #cc99ff;*/
 	color: black;
@@ -46,11 +48,11 @@
 
 .third-heading
 {
-	font-size: 24px;
+	font-size: 1.5em;
 	font-family: 'Dosis' ;
 	font-weight: 500;
 	right: 110px;
-	top: 130px;
+	top: 40px;
 	position: absolute;
 	/*color:  #cc99ff;*/
 	color: black;

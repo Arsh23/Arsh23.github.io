@@ -73,6 +73,7 @@
 	position: absolute;
 	z-index: 6;
     /*opacity: 0.75;*/
+    font-size: 1em;
 }
 .menu-icon-other
 {
@@ -222,6 +223,7 @@
     font-family: 'Dosis', sans-serif;
     text-align: right;
     padding-right: 5px;
+    font-size: 1em;
 }
 
 /*------------------------------------------------------------------------------------*/
