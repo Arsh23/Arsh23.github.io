@@ -123,12 +123,14 @@ function animate_tooltip(event)
 	{
 		$('.menu-tooltip-text').html(event.data.text);
 		$('.menu-tooltip').stop(true,true).animate({top: '-=20px'},100);
-		$(event.data.obj).css('color','#ffffff');
+		/*$(event.data.obj).css('color','#ffffff');*/
+		$(event.data.obj).addClass('menu-icon-highlight');
 	}
 	else if(event.data.action == 'down')
 	{
 		$('.menu-tooltip').stop(true,true).animate({top: '+=20px'},100);
-		$(event.data.obj).css('color','#000000');	
+		/*$(event.data.obj).css('color','#31315f');*/	
+		$(event.data.obj).removeClass('menu-icon-highlight');
 	}
 }
 
