@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<style>
+	.bar line {
+		stroke: 'black';
+		stroke-width: 1;
+		opacity: 0.5;
+	}
+	</style>
+</head>
+<body>
+    <div class='graph'></div>
+	<script>
+		var data = [
+			{name: 'About', color: '#EC644B'},
+			{name: 'Programming', color: '#86E2D5'},
+			{name: 'Photography', color: '#66CC99'},
+			{name: 'Music', color: '#FFCC80'},
+			{name: 'Astronomy', color: '#AED581'},
+			{name: 'Contact', color: '#BE90D4'}
+		];
+
+		//size and margin
+		var radius = 30;
+		//var basewidth = $('.graph').width()
+		//var baseheight = $(window).height()*75 /100;
+		var basewidth = 800;
+		var baseheight = 35 + radius;
+		var margin = {
+			top: radius+5,
+			right: 0,
+			bottom: 0,
+			left:radius 
+		},
+		width = basewidth - margin.left - margin.right,
+		height = baseheight - margin.top - margin.bottom,
+		gap = 45;
+
+		// main canvas
+		var svg = d3.select('.graph')
+		    .append('svg')
+		    .attr('width', width + margin.left + margin.right)
+		    .attr('height', height + margin.top + margin.bottom);
+		var canvas = svg.append("g")
+		    .attr("class", "margin")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")	
+
+		var menu = canvas.append('g')
+			.attr('class', 'menu')
+			.style('opacity', 0.75)
+
+		var button = menu.selectAll('.class')
+			.data(data)
+			.enter()
+			.append('g')
+			.attr('class', 'button')
+			.attr("transform", function(d, i) {
+				return "translate(" + (radius*2 + gap)*i + "," + radius*2 + ")"
+			});
+
+		button
+			.append('circle')
+			.attr('r', radius)
+			.attr('fill', function(d, i) {
+					return d.color;
+			});	
+
+		button
+			.transition()
+			.duration(2000)
+			.attr("transform", function(d, i) {
+				return "translate(" + (radius*2 + gap)*i + "," + 0 + ")"
+			});
+
+
+
+
+	</script>
+</body>
+</html>
