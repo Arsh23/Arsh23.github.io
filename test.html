@@ -4,8 +4,8 @@
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<style>
 	line {
-		stroke: 'black';
-		stroke-width: 1;
+		stroke: black;
+		stroke-width: 2;
 		opacity: 0.5;
 	}
 	</style>
@@ -59,16 +59,30 @@
 		}
 
 		var drawLines = function(x, y) {
-			console.log(x, y)
 			canvas.append('line')
-				.attr('x1', x-15).attr('y1', y-radius)
-				.attr('x2', x-25).attr('y2', y-radius-10)
-				.attr('stroke', 'black')
+				.attr('x1', x-15).attr('y1', y-radius-5)
+				.attr('x2', x-25).attr('y2', y-radius-15)
+			canvas.append('line')
+				.attr('x1', x+15).attr('y1', y-radius-5)
+				.attr('x2', x+25).attr('y2', y-radius-15)
+
+			canvas.append('line')
+				.attr('x1', x-25).attr('y1', y-radius-15)
+				.attr('x2', 0 + 20).attr('y2', y-radius-15)
+			canvas.append('line')
+				.attr('x1', x+25).attr('y1', y-radius-15)
+				.attr('x2', width-20).attr('y2', y-radius-15)
+				
+			canvas.append('line')
+				.attr('x1', 0+20).attr('y1', y-radius-15)
+				.attr('x2', 0+10).attr('y2', y-radius-25)
+			canvas.append('line')
+				.attr('x1', width-20).attr('y1', y-radius-15)
+				.attr('x2', width-10).attr('y2', y-radius-25)
 		}
 
 		var buttonClick = function(d, i) {
 			var g = d3.select(this);
-
 			if(active == -1) {
 				active = i;
 			} else {
@@ -77,13 +91,13 @@
 					removeCircles(g);
 					return;
 				} else {
+					d3.selectAll('line').remove()
 					removeCircles(d3.select('#btn' + active));
 					active = i;
 				}
 			}
-
 			var x = parseInt(g.attr("transform").split('(')[1].split(',')[0]);
-			// drawLines(x, 0)
+			drawLines(x + radius, 0)
 		}
 
 		// https://github.com/wbkd/d3-extended
@@ -119,7 +133,7 @@
 			top: radius+topMargin,
 			right: 0,
 			bottom: 0,
-			left:radius 
+			left:0//radius 
 		},
 		width = basewidth - margin.left - margin.right,
 		height = baseheight - margin.top - margin.bottom;
@@ -139,6 +153,7 @@
 		var menu = canvas.append('g')
 			.attr('class', 'menu')
 			.style('opacity', 0.75)
+		    .attr("transform", "translate(" + radius + ",0)")	
 
 		var button = menu.selectAll('.class')
 			.data(data)
