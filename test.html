@@ -3,7 +3,7 @@
 <head>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<style>
-	.bar line {
+	line {
 		stroke: 'black';
 		stroke-width: 1;
 		opacity: 0.5;
@@ -13,17 +13,22 @@
 <body>
     <div class='graph'></div>
 	<script>
-		var data = [
-			{name: 'About', color: '#EC644B'},
-			{name: 'Programming', color: '#86E2D5'},
-			{name: 'Photography', color: '#66CC99'},
-			{name: 'Music', color: '#FFCC80'},
-			{name: 'Astronomy', color: '#AED581'},
-			{name: 'Contact', color: '#BE90D4'}
-		];
 
-		var hoverEnter = function(d, i) {
-			button = d3.select(this)
+		var active = -1;
+
+		var removeCircles = function(button) {
+			console.log('remove')
+			button.select('.filler')
+				.transition().duration(200)
+				.attr('r', radius*0.90)
+				.remove()	
+			button.select('.outer')
+				.transition().duration(200)
+				.attr('r', radius*0.90)
+				.remove()	
+		}
+
+		var addCircles = function(button) {
 			button.append('circle')
 				.moveToBack()
 				.attr('class', 'filler')
@@ -41,29 +46,80 @@
 				.transition().duration(200)
 				.attr('r', radius*1.20)
 		}
-		var hoverLeave = function(d, i) {
-			button = d3.select(this)
-			button.select('.filler')
-				.transition().duration(200)
-				.attr('r', radius*0.90)
-				.remove()	
-			button.select('.outer')
-				.transition().duration(200)
-				.attr('r', radius*0.90)
-				.remove()
+
+		var hoverEnter = function(d, i) {
+			if(active != i) {
+				addCircles(d3.select(this));
+			}
 		}
+		var hoverLeave = function(d, i) {
+			if(active != i) {
+				removeCircles(d3.select(this));
+			}
+		}
+
+		var drawLines = function(x, y) {
+			console.log(x, y)
+			canvas.append('line')
+				.attr('x1', x-15).attr('y1', y-radius)
+				.attr('x2', x-25).attr('y2', y-radius-10)
+				.attr('stroke', 'black')
+		}
+
+		var buttonClick = function(d, i) {
+			var g = d3.select(this);
+
+			if(active == -1) {
+				active = i;
+			} else {
+				if(active == i) {
+					active = -1;
+					removeCircles(g);
+					return;
+				} else {
+					removeCircles(d3.select('#btn' + active));
+					active = i;
+				}
+			}
+
+			var x = parseInt(g.attr("transform").split('(')[1].split(',')[0]);
+			// drawLines(x, 0)
+		}
+
+		// https://github.com/wbkd/d3-extended
+		d3.selection.prototype.moveToBack = function() {  
+			return this.each(function() { 
+				var firstChild = this.parentNode.firstChild; 
+				if (firstChild) { 
+					this.parentNode.insertBefore(this, firstChild); 
+				} 
+			});
+		}
+	</script>
+
+
+	<script>
+		var data = [
+			{name: 'About', color: '#EC644B'},
+			{name: 'Programming', color: '#86E2D5'},
+			{name: 'Photography', color: '#66CC99'},
+			{name: 'Music', color: '#FFCC80'},
+			{name: 'Astronomy', color: '#AED581'},
+			{name: 'Contact', color: '#BE90D4'}
+		];
 
 		//size and margin
 		var radius = 30,
 		gap = 45,
-		topmargin = 25,
-		basewidth = (radius*2)*6 + gap*5 + 20,
-		baseheight = topmargin*2 + radius*2,
+		topMargin = 25,
+		leftPadding = 100,
+		basewidth = (radius*2)*6 + gap*5 + leftPadding*2,
+		baseheight = topMargin*2 + radius*2,
 		margin = {
-			top: radius+topmargin,
-			right: 10,
+			top: radius+topMargin,
+			right: 0,
 			bottom: 0,
-			left:radius+10 
+			left:radius 
 		},
 		width = basewidth - margin.left - margin.right,
 		height = baseheight - margin.top - margin.bottom;
@@ -72,7 +128,10 @@
 		var svg = d3.select('.graph')
 		    .append('svg')
 		    .attr('width', width + margin.left + margin.right)
-		    .attr('height', height + margin.top + margin.bottom);
+		    .attr('height', height + margin.top + margin.bottom)
+			// .on("click", function(d, i) {
+			// 	active = -1;	
+			// });
 		var canvas = svg.append("g")
 		    .attr("class", "margin")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")	
@@ -87,11 +146,11 @@
 			.append('g')
 			.attr('class', 'button')
 			.attr('id', function(d, i) {
-				return d.name;
+				return 'btn' + i;
 			})
 			.style('opacity', 0)
 			.attr("transform", function(d, i) {
-				return "translate(" + (radius*2 + gap)*i + "," + radius*2 + ")"
+				return "translate(" + (leftPadding+((radius*2 + gap)*i)) + "," + radius*2 + ")"
 			});
 
 		button
@@ -104,6 +163,7 @@
 		button
 			.on("mouseenter", hoverEnter)
 			.on("mouseleave", hoverLeave)	
+			.on("click", buttonClick)
 
 		button
 			.transition()
@@ -114,27 +174,8 @@
 			.ease(d3.easeElastic)
 			.style('opacity', 1)
 			.attr("transform", function(d, i) {
-				return "translate(" + (radius*2 + gap)*i + "," + 0 + ")"
+				return "translate(" + (leftPadding+((radius*2 + gap)*i)) + "," + 0 + ")"
 			});
-
-		
-
-		// https://github.com/wbkd/d3-extended
-		d3.selection.prototype.moveToFront = function() {  
-		  return this.each(function(){
-			this.parentNode.appendChild(this);
-		  });
-		};
-		d3.selection.prototype.moveToBack = function() {  
-			return this.each(function() { 
-				var firstChild = this.parentNode.firstChild; 
-				if (firstChild) { 
-					this.parentNode.insertBefore(this, firstChild); 
-				} 
-			});
-		};
-
-
 	</script>
 </body>
 </html>
