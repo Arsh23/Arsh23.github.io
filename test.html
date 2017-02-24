@@ -23,20 +23,19 @@
 		];
 
 		//size and margin
-		var radius = 30;
-		//var basewidth = $('.graph').width()
-		//var baseheight = $(window).height()*75 /100;
-		var basewidth = 800;
-		var baseheight = 35 + radius;
-		var margin = {
-			top: radius+5,
+		var radius = 30,
+		gap = 45,
+		topmargin = 25,
+		basewidth = (radius*2)*6 + gap*5,
+		baseheight = 30 + topmargin + radius,
+		margin = {
+			top: radius+topmargin,
 			right: 0,
 			bottom: 0,
 			left:radius 
 		},
 		width = basewidth - margin.left - margin.right,
-		height = baseheight - margin.top - margin.bottom,
-		gap = 45;
+		height = baseheight - margin.top - margin.bottom;
 
 		// main canvas
 		var svg = d3.select('.graph')
@@ -69,7 +68,11 @@
 
 		button
 			.transition()
-			.duration(2000)
+			.delay( function(d, i) {
+				return 1000 + 100*i;
+			})
+			.duration(1200)
+			.ease(d3.easeElastic)
 			.attr("transform", function(d, i) {
 				return "translate(" + (radius*2 + gap)*i + "," + 0 + ")"
 			});
