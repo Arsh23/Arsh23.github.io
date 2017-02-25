@@ -2,22 +2,54 @@
 <html lang="en">
 <head>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+	<link rel="stylesheet" 
+   	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
 	<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto:100,400');
+
+	html, body {
+		height: 100%;
+	}
+
 	line {
 		stroke: black;
 		stroke-width: 2;
 		opacity: 0.5;
 	}
+
+	.desc {
+		text-transform: uppercase;
+		font-family: 'Roboto', sans-serif;
+		font-size: 30px;
+		font-weight: 100;
+		letter-spacing: 6px;
+		opacity: 0.75;
+	}
+
+	.menu-div {
+		padding: 0px;
+	}
+
+	.content {
+		height: 75%;
+	}
 	</style>
 </head>
 <body>
-    <div class='graph'></div>
+    <div class='container content'>
+			<h1>yo</h1>
+	</div>
+	<div class='container menu-div'></div>
 	<script>
 
 		var active = -1;
 
 		var removeCircles = function(button) {
-			console.log('remove')
 			button.select('.filler')
 				.transition().duration(200)
 				.attr('r', radius*0.90)
@@ -50,11 +82,19 @@
 		var hoverEnter = function(d, i) {
 			if(active != i) {
 				addCircles(d3.select(this));
+				if(active == -1) {
+					d3.select('.desc')
+						.text(function() {
+							return d.name;
+						})
+				}
 			}
 		}
 		var hoverLeave = function(d, i) {
 			if(active != i) {
 				removeCircles(d3.select(this));
+				if(active == -1)
+					d3.select('.desc').text('');
 			}
 		}
 
@@ -68,17 +108,17 @@
 
 			canvas.append('line')
 				.attr('x1', x-25).attr('y1', y-radius-15)
-				.attr('x2', 0 + 20).attr('y2', y-radius-15)
+				.attr('x2', 0+leftPadding/2).attr('y2', y-radius-15)
 			canvas.append('line')
 				.attr('x1', x+25).attr('y1', y-radius-15)
-				.attr('x2', width-20).attr('y2', y-radius-15)
+				.attr('x2', width-(leftPadding/2)).attr('y2', y-radius-15)
 				
 			canvas.append('line')
-				.attr('x1', 0+20).attr('y1', y-radius-15)
-				.attr('x2', 0+10).attr('y2', y-radius-25)
+				.attr('x1', 0+leftPadding/2).attr('y1', y-radius-15)
+				.attr('x2', 0+(leftPadding/2)-10).attr('y2', y-radius-25)
 			canvas.append('line')
-				.attr('x1', width-20).attr('y1', y-radius-15)
-				.attr('x2', width-10).attr('y2', y-radius-25)
+				.attr('x1', width-(leftPadding/2)).attr('y1', y-radius-15)
+				.attr('x2', width-(leftPadding/2)+10).attr('y2', y-radius-25)
 		}
 
 		var buttonClick = function(d, i) {
@@ -88,11 +128,17 @@
 			} else {
 				if(active == i) {
 					active = -1;
+					d3.selectAll('line').remove()
+					d3.select('.desc').text('');
 					removeCircles(g);
 					return;
 				} else {
 					d3.selectAll('line').remove()
 					removeCircles(d3.select('#btn' + active));
+					d3.select('.desc')
+						.text(function() {
+							return d.name;
+						})
 					active = i;
 				}
 			}
@@ -114,21 +160,24 @@
 
 	<script>
 		var data = [
-			{name: 'About', color: '#EC644B'},
-			{name: 'Programming', color: '#86E2D5'},
-			{name: 'Photography', color: '#66CC99'},
-			{name: 'Music', color: '#FFCC80'},
-			{name: 'Astronomy', color: '#AED581'},
-			{name: 'Contact', color: '#BE90D4'}
+			{name: 'Programming', color: '#EC644B', icon: 'code'},
+			{name: 'Photography', color: '#86E2D5', icon: 'technology-1'},
+			{name: 'Music', color: '#66CC99', icon: 'drum-set-cartoon-variant'},
+			{name: 'Astronomy', color: '#FFCC80', icon: 'transport'},
+			{name: 'Contact', color: '#AED581', icon: 'social'},
+			{name: 'Resume', color: '#BE90D4', icon: 'paper'}
 		];
 
 		//size and margin
 		var radius = 30,
+		div_width = parseInt(d3.select('.menu-div').style('width')),
 		gap = 45,
 		topMargin = 25,
-		leftPadding = 100,
+		leftPadding = (div_width - ((radius*2)*6 + gap*5))/2,
+
 		basewidth = (radius*2)*6 + gap*5 + leftPadding*2,
-		baseheight = topMargin*2 + radius*2,
+		baseheight = topMargin*3 + radius*2,
+
 		margin = {
 			top: radius+topMargin,
 			right: 0,
@@ -137,9 +186,10 @@
 		},
 		width = basewidth - margin.left - margin.right,
 		height = baseheight - margin.top - margin.bottom;
+		d3.select('.content').style('padding-left', leftPadding/2 + 'px');
 
 		// main canvas
-		var svg = d3.select('.graph')
+		var svg = d3.select('.menu-div')
 		    .append('svg')
 		    .attr('width', width + margin.left + margin.right)
 		    .attr('height', height + margin.top + margin.bottom)
@@ -154,6 +204,13 @@
 			.attr('class', 'menu')
 			.style('opacity', 0.75)
 		    .attr("transform", "translate(" + radius + ",0)")	
+
+		canvas.append("text")
+			.attr("class", "desc")
+			.attr("x", width/2)
+			.attr("y", height-10)
+			.style("text-anchor", "middle")
+			.text('')
 
 		var button = menu.selectAll('.class')
 			.data(data)
@@ -174,6 +231,16 @@
 			.attr('fill', function(d, i) {
 				return d.color;
 			});
+
+		button
+			.append("svg:image")
+			.attr("xlink:href", function(d, i) {
+				return "svg/" + d.icon + ".svg";
+			})
+			.attr("width", radius*2 - 23)
+			.attr("height", radius*2 - 23)
+			.attr("x", -radius+11)
+		  	.attr("y", -radius+11);
 
 		button
 			.on("mouseenter", hoverEnter)
