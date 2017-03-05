@@ -12,7 +12,7 @@
 	<style>
 	@import url('https://fonts.googleapis.com/css?family=Roboto:100,400');
 
-	html, body {
+	html, body, .container {
 		height: 100%;
 	}
 
@@ -36,15 +36,68 @@
 	}
 
 	.content {
-		height: 75%;
+		height: calc(100% - 140px);
+		padding-top: 8%;
 	}
+
+	.logo {
+		transform: rotate(180deg);
+		/*height: 200px;*/
+		width: 200px;
+	}
+
+	.svg-img {
+		width: 100%;
+		height: auto;
+	}
+
+	/* Small Devices, Tablets */
+	@media only screen and (max-width : 768px){
+		.svg-img {
+			max-height: 40vh;
+		}
+	}
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width : 480px){
+		.svg-img {
+			display: table;
+			margin: auto;
+			max-height: 40vh;
+		}
+	}
+
 	</style>
 </head>
 <body>
-    <div class='container content'>
-			<h1>yo</h1>
+    <div class='container'>
+		<div class='row content'>
+			<div class='content-programming'>
+				<div class='col-sm-5 col-xs-12'>
+					<object class='svg-img' type="image/svg+xml" data="svg/codelines.svg"></object>
+				</div>
+				<div class='col-sm-7 col-xs-12'>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
+				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
+				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
+				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
+				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
+				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
+				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
+				</p>
+				</div>
+			</div>
+		</div>
+		<div class='row menu-div'></div>
 	</div>
-	<div class='container menu-div'></div>
+
+
 	<script>
 
 		var active = -1;
@@ -187,6 +240,7 @@
 		width = basewidth - margin.left - margin.right,
 		height = baseheight - margin.top - margin.bottom;
 		d3.select('.content').style('padding-left', leftPadding/2 + 'px');
+		d3.select('.content').style('padding-right', leftPadding/2 + 'px');
 
 		// main canvas
 		var svg = d3.select('.menu-div')
