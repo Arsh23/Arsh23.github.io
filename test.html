@@ -33,14 +33,20 @@
 
 	.menu-div {
 		padding: 0px;
+		margin: 0px;
+		width: 100%;
+		height: 100%;
+	}
+
+	svg {
+		display: table;
+		margin: 0 auto;
 	}
 
 	</style>
 </head>
 <body>
-    <div class='container'>
-		<div class='row menu-div'></div>
-	</div>
+	<div class='row menu-div'></div>
 
 	<script>
 
@@ -140,46 +146,26 @@
 			{name: 'Contact', color: '#AED581', icon: 'social'},
 			{name: 'Resume', color: '#BE90D4', icon: 'paper'}
 		];
+
 		//size and margin
-		//div_width = parseInt(d3.select('.menu-div').style('width')),
-		//topMargin = 25,
-		//leftPadding = (div_width - ((radius*2)*6 + gap*5))/2,
-
-		basewidth = 700;
-		baseheight = 300;
-		//basewidth = (radius*2)*6 + gap*5 + leftPadding*2,
-		//baseheight = topMargin*3 + radius*2,
-
-		margin = {
-			top: 0,//radius+topMargin,
-			right: 0,
-			bottom: 0,
-			left:0//radius 
-		},
-		width = basewidth - margin.left - margin.right,
-		height = baseheight - margin.top - margin.bottom;
+		width = parseInt(d3.select('.menu-div').style('width')) - 5;
+		height = parseInt(d3.select('.menu-div').style('height')) - 5;
 
 		// main canvas
-		var svg = d3.select('.menu-div')
+		var canvas = d3.select('.menu-div')
 		    .append('svg')
-		    .attr('width', width + margin.left + margin.right)
-		    .attr('height', height + margin.top + margin.bottom)
-		var canvas = svg.append("g")
-		    .attr("class", "margin")
-		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")	
-
-		</script>
-
-		<script>
-
+		    .attr('width', width)
+		    .attr('height', height)
 
 		var radius = 30,
-			gap = 45;
+			gap = 45,
+			paddingX = (width - (radius*6*2 + gap*5))/2,
+			paddingY = (height - 150);
 
 		var menu = canvas.append('g')
 			.attr('class', 'menu')
 			.style('opacity', 0.75)
-		    .attr("transform", "translate(" + 50 + "," + 50 + ")")	
+		    .attr("transform", "translate(" + paddingX + "," + paddingY + ")")	
 
 		menu.append("text")
 			.attr("class", "desc")
