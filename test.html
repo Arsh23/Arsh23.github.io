@@ -10,7 +10,7 @@
 	crossorigin="anonymous">
 
 	<style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto:100,400');
+	@import url('https://fonts.googleapis.com/css?family=Raleway|Roboto:100,400');
 
 	html, body, .container {
 		height: 100%;
@@ -35,68 +35,12 @@
 		padding: 0px;
 	}
 
-	.content {
-		height: calc(100% - 140px);
-		padding-top: 8%;
-	}
-
-	.logo {
-		transform: rotate(180deg);
-		/*height: 200px;*/
-		width: 200px;
-	}
-
-	.svg-img {
-		width: 100%;
-		height: auto;
-	}
-
-	/* Small Devices, Tablets */
-	@media only screen and (max-width : 768px){
-		.svg-img {
-			max-height: 40vh;
-		}
-	}
-
-	/* Extra Small Devices, Phones */
-	@media only screen and (max-width : 480px){
-		.svg-img {
-			display: table;
-			margin: auto;
-			max-height: 40vh;
-		}
-	}
-
 	</style>
 </head>
 <body>
     <div class='container'>
-		<div class='row content'>
-			<div class='content-programming'>
-				<div class='col-sm-5 col-xs-12'>
-					<object class='svg-img' type="image/svg+xml" data="svg/codelines.svg"></object>
-				</div>
-				<div class='col-sm-7 col-xs-12'>
-				<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
-				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
-				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
-				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
-				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Ratio quidem vestra sic cogit. Duo Reges: constructio interrete.
-				Atque haec coniunctio confusioque virtutum tamen a philosophis ratione 
-				quadam distinguitur. Sed in rebus apertissimis nimium longi sumus.
-				</p>
-				</div>
-			</div>
-		</div>
 		<div class='row menu-div'></div>
 	</div>
-
 
 	<script>
 
@@ -132,14 +76,19 @@
 				.attr('r', radius*1.20)
 		}
 
+		var addDesc = function(text) {
+			d3.select('.desc').text(text)
+		}
+
+		var removeDesc = function() {
+			d3.select('.desc').text('')
+		}
+
 		var hoverEnter = function(d, i) {
 			if(active != i) {
 				addCircles(d3.select(this));
 				if(active == -1) {
-					d3.select('.desc')
-						.text(function() {
-							return d.name;
-						})
+					addDesc(d.name);
 				}
 			}
 		}
@@ -147,31 +96,8 @@
 			if(active != i) {
 				removeCircles(d3.select(this));
 				if(active == -1)
-					d3.select('.desc').text('');
+					removeDesc();
 			}
-		}
-
-		var drawLines = function(x, y) {
-			canvas.append('line')
-				.attr('x1', x-15).attr('y1', y-radius-5)
-				.attr('x2', x-25).attr('y2', y-radius-15)
-			canvas.append('line')
-				.attr('x1', x+15).attr('y1', y-radius-5)
-				.attr('x2', x+25).attr('y2', y-radius-15)
-
-			canvas.append('line')
-				.attr('x1', x-25).attr('y1', y-radius-15)
-				.attr('x2', 0+leftPadding/2).attr('y2', y-radius-15)
-			canvas.append('line')
-				.attr('x1', x+25).attr('y1', y-radius-15)
-				.attr('x2', width-(leftPadding/2)).attr('y2', y-radius-15)
-				
-			canvas.append('line')
-				.attr('x1', 0+leftPadding/2).attr('y1', y-radius-15)
-				.attr('x2', 0+(leftPadding/2)-10).attr('y2', y-radius-25)
-			canvas.append('line')
-				.attr('x1', width-(leftPadding/2)).attr('y1', y-radius-15)
-				.attr('x2', width-(leftPadding/2)+10).attr('y2', y-radius-25)
 		}
 
 		var buttonClick = function(d, i) {
@@ -181,22 +107,15 @@
 			} else {
 				if(active == i) {
 					active = -1;
-					d3.selectAll('line').remove()
-					d3.select('.desc').text('');
+					removeDesc();
 					removeCircles(g);
 					return;
 				} else {
-					d3.selectAll('line').remove()
 					removeCircles(d3.select('#btn' + active));
-					d3.select('.desc')
-						.text(function() {
-							return d.name;
-						})
+					addDesc(d.name);
 					active = i;
 				}
 			}
-			var x = parseInt(g.attr("transform").split('(')[1].split(',')[0]);
-			drawLines(x + radius, 0)
 		}
 
 		// https://github.com/wbkd/d3-extended
@@ -212,6 +131,7 @@
 
 
 	<script>
+
 		var data = [
 			{name: 'Programming', color: '#EC644B', icon: 'code'},
 			{name: 'Photography', color: '#86E2D5', icon: 'technology-1'},
@@ -220,53 +140,55 @@
 			{name: 'Contact', color: '#AED581', icon: 'social'},
 			{name: 'Resume', color: '#BE90D4', icon: 'paper'}
 		];
-
 		//size and margin
-		var radius = 30,
-		div_width = parseInt(d3.select('.menu-div').style('width')),
-		gap = 45,
-		topMargin = 25,
-		leftPadding = (div_width - ((radius*2)*6 + gap*5))/2,
+		//div_width = parseInt(d3.select('.menu-div').style('width')),
+		//topMargin = 25,
+		//leftPadding = (div_width - ((radius*2)*6 + gap*5))/2,
 
-		basewidth = (radius*2)*6 + gap*5 + leftPadding*2,
-		baseheight = topMargin*3 + radius*2,
+		basewidth = 700;
+		baseheight = 300;
+		//basewidth = (radius*2)*6 + gap*5 + leftPadding*2,
+		//baseheight = topMargin*3 + radius*2,
 
 		margin = {
-			top: radius+topMargin,
+			top: 0,//radius+topMargin,
 			right: 0,
 			bottom: 0,
 			left:0//radius 
 		},
 		width = basewidth - margin.left - margin.right,
 		height = baseheight - margin.top - margin.bottom;
-		d3.select('.content').style('padding-left', leftPadding/2 + 'px');
-		d3.select('.content').style('padding-right', leftPadding/2 + 'px');
 
 		// main canvas
 		var svg = d3.select('.menu-div')
 		    .append('svg')
 		    .attr('width', width + margin.left + margin.right)
 		    .attr('height', height + margin.top + margin.bottom)
-			// .on("click", function(d, i) {
-			// 	active = -1;	
-			// });
 		var canvas = svg.append("g")
 		    .attr("class", "margin")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")	
 
+		</script>
+
+		<script>
+
+
+		var radius = 30,
+			gap = 45;
+
 		var menu = canvas.append('g')
 			.attr('class', 'menu')
 			.style('opacity', 0.75)
-		    .attr("transform", "translate(" + radius + ",0)")	
+		    .attr("transform", "translate(" + 50 + "," + 50 + ")")	
 
-		canvas.append("text")
+		menu.append("text")
 			.attr("class", "desc")
-			.attr("x", width/2)
-			.attr("y", height-10)
+			.attr("x", (radius*6*2 + gap*5)/2)
+			.attr("y", radius*3+12)
 			.style("text-anchor", "middle")
 			.text('')
 
-		var button = menu.selectAll('.class')
+		var button = menu.selectAll('.button')
 			.data(data)
 			.enter()
 			.append('g')
@@ -276,7 +198,7 @@
 			})
 			.style('opacity', 0)
 			.attr("transform", function(d, i) {
-				return "translate(" + (leftPadding+((radius*2 + gap)*i)) + "," + radius*2 + ")"
+				return "translate(" + (((radius*2 + gap)*i)+radius+6) + "," + ((radius*3)+6) + ")"
 			});
 
 		button
@@ -310,7 +232,7 @@
 			.ease(d3.easeElastic)
 			.style('opacity', 1)
 			.attr("transform", function(d, i) {
-				return "translate(" + (leftPadding+((radius*2 + gap)*i)) + "," + 0 + ")"
+				return "translate(" + (((radius*2 + gap)*i)+radius+6) + "," + (radius+6) + ")"
 			});
 	</script>
 </body>
