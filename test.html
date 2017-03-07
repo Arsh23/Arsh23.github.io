@@ -48,7 +48,7 @@
 <body>
 	<div class='row menu-div'></div>
 
-	<script>
+		<script>
 
 		var active = -1;
 
@@ -110,6 +110,7 @@
 			var g = d3.select(this);
 			if(active == -1) {
 				active = i;
+				updateContent();
 			} else {
 				if(active == i) {
 					active = -1;
@@ -221,5 +222,103 @@
 				return "translate(" + (((radius*2 + gap)*i)+radius+6) + "," + (radius+6) + ")"
 			});
 	</script>
+
+
+	<script>
+
+		nodes = [
+			{name: 'root', fixed: true, fx: 100, fy: 100},
+			{name: 'programming', fixed: true, fx: width/2, fy: height/2},
+			{name: 'github'},
+			{name: 'hackerrank'},
+			{name: 'projects'}
+		]
+
+		links = [
+			{source: 'root', target: 'programming'},
+			{source: 'programming', target: 'github'},
+			{source: 'programming', target: 'hackerrank'},
+			{source: 'programming', target: 'projects'},
+		]
+
+
+		var simulation = d3.forceSimulation()
+			//.force("center", d3.forceCenter(width / 2, height / 2))
+			.force("charge", 
+				d3.forceManyBody()
+					.strength(-100)
+			)
+			.force("link", 
+				d3.forceLink()
+					.id( function(d) { return d.name })
+					.distance(150)
+					//.strength(2.5)
+					//.iterations(8)
+			);
+
+		simulation
+		  .nodes(nodes)
+	      .on("tick", tick);
+
+		simulation.force("link")
+		  .links(links);
+
+		var content = canvas.append('g')
+			.attr('class', 'content')
+
+		var node = content.selectAll('.node')
+			.data(nodes)
+			.enter()
+			.append('circle')
+			.attr('class', 'node')
+			.attr('r', 30)
+			.call(d3.drag()
+				.on("start", dragstarted)
+				.on("drag", dragged)
+				.on("end", dragended))
+
+		var link = content.selectAll('.link')
+			.data(links)
+			.enter()
+			.append('line')
+			.attr('class', 'link')
+			
+
+		function tick() {
+			link
+				.attr("x1", function(d) { return d.source.x; })
+				.attr("y1", function(d) { return d.source.y; })
+				.attr("x2", function(d) { return d.target.x; })
+				.attr("y2", function(d) { return d.target.y; });
+
+			node
+				.attr("cx", function(d) { return d.x; })
+				.attr("cy", function(d) { return d.y; });
+		}
+
+		function dragstarted(d) {
+			if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+			d.fx = d.x;
+			d.fy = d.y;
+		}
+
+		function dragged(d) {
+			d.fx = d3.event.x;
+			d.fy = d3.event.y;
+		}
+
+		function dragended(d) {
+			if (!d3.event.active) simulation.alphaTarget(0);
+			if(!d.fixed) {
+				d.fx = null;
+				d.fy = null;
+			}
+		}
+				
+
+	</script>
+
+
+
 </body>
 </html>
