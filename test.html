@@ -42,6 +42,11 @@
 		display: table;
 		margin: 0 auto;
 	}
+	
+	.node-desc {
+		font-family: 'Raleway';
+		font-size: 22px;
+	}
 
 	</style>
 </head>
@@ -227,34 +232,32 @@
 	<script>
 
 		nodes = [
-			{name: 'root', fixed: true, fx: 100, fy: 100},
-			{name: 'programming', fixed: true, fx: width/2, fy: height/2},
-			{name: 'github'},
-			{name: 'hackerrank'},
-			{name: 'projects'}
+			{name: 'programming', fixed: true, fx: width/2, fy: height/2.5},
+			{name: 'github', x: width/2, y: height/2},
+			{name: 'hackerrank', x: width/2, y: height/2},
+			{name: 'projects', x: width/2, y: height/2}
 		]
 
 		links = [
-			{source: 'root', target: 'programming'},
 			{source: 'programming', target: 'github'},
 			{source: 'programming', target: 'hackerrank'},
 			{source: 'programming', target: 'projects'},
 		]
 
+		var many_body_force = d3.forceManyBody()
+			.strength( function(d, i) {
+				return -300
+			})
 
+		var link_force = d3.forceLink()
+			.id( function(d) { return d.name })
+			.distance(150)
+			
 		var simulation = d3.forceSimulation()
 			//.force("center", d3.forceCenter(width / 2, height / 2))
-			.force("charge", 
-				d3.forceManyBody()
-					.strength(-100)
-			)
-			.force("link", 
-				d3.forceLink()
-					.id( function(d) { return d.name })
-					.distance(150)
-					//.strength(2.5)
-					//.iterations(8)
-			);
+			.force('positioning', d3.forceY(-20))
+			.force("charge",many_body_force)
+			.force("link",link_force);
 
 		simulation
 		  .nodes(nodes)
@@ -269,13 +272,23 @@
 		var node = content.selectAll('.node')
 			.data(nodes)
 			.enter()
-			.append('circle')
+			.append('g')
+
+		node.append('circle')
 			.attr('class', 'node')
 			.attr('r', 30)
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
 				.on("end", dragended))
+		
+		node.append('text')
+			.attr('class', 'node-desc')
+			.style('fill', 'red')
+			.text( function(d, i) {
+				if(!d.fixed)
+					return d.name
+			})
 
 		var link = content.selectAll('.link')
 			.data(links)
@@ -291,9 +304,16 @@
 				.attr("x2", function(d) { return d.target.x; })
 				.attr("y2", function(d) { return d.target.y; });
 
-			node
-				.attr("cx", function(d) { return d.x; })
-				.attr("cy", function(d) { return d.y; });
+			node.attr('transform', function(d, i) {
+				return 'translate(' + d.x + ',' + d.y + ')';
+			})
+			node.select('.node-desc')
+				.attr('text-anchor', function(d, i) {
+					if(d.x <= width/2)
+						return 'end'
+					else
+						return 'start'
+				})
 		}
 
 		function dragstarted(d) {
