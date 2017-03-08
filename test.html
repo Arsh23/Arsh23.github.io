@@ -115,14 +115,18 @@
 			var g = d3.select(this);
 			if(active == -1) {
 				active = i;
-				updateContent();
+				moveButton(g, d, i)
+				//updateContent();
 			} else {
 				if(active == i) {
 					active = -1;
 					removeDesc();
 					removeCircles(g);
+					resetButton(g, d, i)
 					return;
 				} else {
+					moveButton(g, d, i)
+					resetButton(d3.select('#btn' + active), d, active)
 					removeCircles(d3.select('#btn' + active));
 					addDesc(d.name);
 					active = i;
@@ -140,7 +144,22 @@
 			});
 		}
 	</script>
-
+	
+	<script>
+		
+		var moveButton = function(button, d, i) {
+			button
+				.attr('transform', 'translate(' + width/2 + ',' + height/2 + ')')
+			
+		}
+		var resetButton = function(button, d, i) {
+			button
+				.attr("transform", "translate(" 
+						+ (((radius*2 + gap)*i)+radius+6+paddingX) + "," 
+						+ (radius+6+paddingY) + ")"
+				)
+		}
+	</script>
 
 	<script>
 
@@ -163,6 +182,10 @@
 		    .attr('width', width)
 		    .attr('height', height)
 
+		var content = canvas.append('g')
+			.attr('class', 'content')
+
+
 		var radius = 30,
 			gap = 45,
 			paddingX = (width - (radius*6*2 + gap*5))/2,
@@ -171,7 +194,7 @@
 		var menu = canvas.append('g')
 			.attr('class', 'menu')
 			.style('opacity', 0.75)
-		    .attr("transform", "translate(" + paddingX + "," + paddingY + ")")	
+		    //.attr("transform", "translate(" + paddingX + "," + paddingY + ")")	
 
 		menu.append("text")
 			.attr("class", "desc")
@@ -179,6 +202,7 @@
 			.attr("y", radius*3+12)
 			.style("text-anchor", "middle")
 			.text('')
+		    .attr("transform", "translate(" + paddingX + "," + paddingY + ")")	
 
 		var button = menu.selectAll('.button')
 			.data(data)
@@ -190,7 +214,9 @@
 			})
 			.style('opacity', 0)
 			.attr("transform", function(d, i) {
-				return "translate(" + (((radius*2 + gap)*i)+radius+6) + "," + ((radius*3)+6) + ")"
+				return "translate(" 
+					+ (((radius*2 + gap)*i)+radius+6+paddingX) + "," 
+					+ ((radius*3)+6+paddingY) + ")"
 			});
 
 		button
@@ -224,11 +250,14 @@
 			.ease(d3.easeElastic)
 			.style('opacity', 1)
 			.attr("transform", function(d, i) {
-				return "translate(" + (((radius*2 + gap)*i)+radius+6) + "," + (radius+6) + ")"
+				return "translate(" 
+					+ (((radius*2 + gap)*i)+radius+6+paddingX) + "," 
+					+ (radius+6+paddingY) + ")"
 			});
+
 	</script>
 
-
+	<!--
 	<script>
 
 		nodes = [
@@ -246,7 +275,7 @@
 
 		var many_body_force = d3.forceManyBody()
 			.strength( function(d, i) {
-				return -300
+				return -30
 			})
 
 		var link_force = d3.forceLink()
@@ -254,8 +283,8 @@
 			.distance(150)
 			
 		var simulation = d3.forceSimulation()
-			//.force("center", d3.forceCenter(width / 2, height / 2))
-			.force('positioning', d3.forceY(-20))
+			.force("center", d3.forceCenter(width / 2, height / 2.5))
+			.force('positioning', d3.forceY(-0.2))
 			.force("charge",many_body_force)
 			.force("link",link_force);
 
@@ -276,7 +305,12 @@
 
 		node.append('circle')
 			.attr('class', 'node')
-			.attr('r', 30)
+			.attr('r', function(d, i) {
+				if(d.fixed)
+					return 50;
+				else
+					return radius;	
+			})
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
@@ -337,7 +371,7 @@
 				
 
 	</script>
-
+	-->
 
 
 </body>
