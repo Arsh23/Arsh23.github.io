@@ -147,17 +147,44 @@
 	
 	<script>
 		
+		var moveEase = d3.easeElastic.amplitude(1.20).period(0.45);
+		var extra = 30;
+
 		var moveButton = function(button, d, i) {
 			button
+				.transition().duration(600)
+				.ease(moveEase)
 				.attr('transform', 'translate(' + width/2 + ',' + height/2 + ')')
-			
+
+			button.selectAll('circle')
+				.transition().duration(300)
+				.attr('r', function(d, i) {
+					return parseInt(d3.select(this).attr('r')) + extra	
+				})
+			button.select('image')
+				.transition().duration(300)
+				.attr("width", (radius+extra)*2 - 23-extra)
+				.attr("height", (radius+extra)*2 - 23-extra)
+				.attr("x", -(radius+extra)+11+extra/2)
+				.attr("y", -(radius+extra)+11+extra/2)
 		}
 		var resetButton = function(button, d, i) {
 			button
+				.transition().duration(600)
+				.ease(moveEase)
 				.attr("transform", "translate(" 
 						+ (((radius*2 + gap)*i)+radius+6+paddingX) + "," 
 						+ (radius+6+paddingY) + ")"
 				)
+			button.selectAll('circle')
+				.transition().duration(300)
+				.attr('r', radius)
+			button.select('image')
+				.transition().duration(300)
+				.attr("width", radius*2 - 23)
+				.attr("height", radius*2 - 23)
+				.attr("x", -radius+11)
+				.attr("y", -radius+11)
 		}
 	</script>
 
