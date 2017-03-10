@@ -116,7 +116,7 @@
 			if(active == -1) {
 				active = i;
 				moveButton(g, d, i)
-				//updateContent();
+				updateContent(d, i);
 			} else {
 				if(active == i) {
 					active = -1;
@@ -186,12 +186,19 @@
 				.attr("x", -radius+11)
 				.attr("y", -radius+11)
 		}
-	</script>
+		</script>
+
+		
 
 	<script>
 
 		var data = [
-			{name: 'Programming', color: '#EC644B', icon: 'code'},
+			{name: 'Programming', color: '#EC644B', icon: 'code',
+				buttons: [
+					{name: 'Astronomy', color: '#FFCC80', icon: 'transport'},
+					{name: 'Astronomy', color: '#FFCC80', icon: 'transport'},
+					{name: 'Astronomy', color: '#FFCC80', icon: 'transport'}
+			]},
 			{name: 'Photography', color: '#86E2D5', icon: 'technology-1'},
 			{name: 'Music', color: '#66CC99', icon: 'drum-set-cartoon-variant'},
 			{name: 'Astronomy', color: '#FFCC80', icon: 'transport'},
@@ -283,12 +290,90 @@
 			});
 
 	</script>
+	<script>
 
-	<!--
+		//var updateContent = function(d, i) {
+
+			var simulation = d3.forceSimulation()
+				.alphaDecay(0.012)
+				.force("positioningX", d3.forceX()
+					.x(function(d, i) { return 250*i; })
+				)
+				.force("positioningY", d3.forceY()
+					.y(function(d, i) { return 100*i; })
+				)
+				//.force("charge",d3.forceManyBody())
+
+			simulation
+				.nodes(data[0].buttons)
+			  	.on("tick", tick);	
+
+			var box = d3.select('.content')
+				.selectAll('rect')
+				.data(data[0].buttons)
+				.enter()
+				.append('rect')
+				.attr('width', 200)
+				.attr('height', 100)
+		//		.attr('x', getRandX)
+		//		.attr('y', function(d, i) { return 100*i })
+				.call(d3.drag()
+					.on("start", dragstarted)
+					.on("drag", dragged)
+					.on("end", dragended))
+
+
+			function tick() {
+				console.log('tick');
+				
+				box
+				.attr('x', function(d) { return d.x; })
+				.attr('y', function(d) { return d.y; })
+
+			}				
+
+			function dragstarted(d) {
+				if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+				d.fx = d.x;
+				d.fy = d.y;
+			}
+
+			function dragged(d) {
+				d.fx = d3.event.x;
+				d.fy = d3.event.y;
+			}
+
+			function dragended(d) {
+				if (!d3.event.active) simulation.alphaTarget(0);
+				if(!d.fixed) {
+					d.fx = null;
+					d.fy = null;
+				}
+			}
+		//}
+
+		/*var getRandX = function() {
+			r = getRandomInt(1,1000);
+			if(r%2 == 0) {
+				return getRandomInt(30, (width/2)-radius-extra);
+			} else {
+				return getRandomInt((width/2)+radius+extra, width);
+			}
+		}*/
+
+
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min)) + min;
+		}
+		
+	</script>
+<!--	
 	<script>
 
 		nodes = [
-			{name: 'programming', fixed: true, fx: width/2, fy: height/2.5},
+			{name: 'programming', fixed: true, fx: 250, fy: height/2.5},
 			{name: 'github', x: width/2, y: height/2},
 			{name: 'hackerrank', x: width/2, y: height/2},
 			{name: 'projects', x: width/2, y: height/2}
@@ -310,17 +395,18 @@
 			.distance(150)
 			
 		var simulation = d3.forceSimulation()
-			.force("center", d3.forceCenter(width / 2, height / 2.5))
-			.force('positioning', d3.forceY(-0.2))
+			.force("center", d3.forceCenter(width / 2, height / 2.5).x(
+				function(d,i) { return 250;}))
+//			.force('positioning', d3.forceY(-0.2))
 			.force("charge",many_body_force)
-			.force("link",link_force);
+//			.force("link",link_force);
 
 		simulation
 		  .nodes(nodes)
 	      .on("tick", tick);
 
-		simulation.force("link")
-		  .links(links);
+//		simulation.force("link")
+//		  .links(links);
 
 		var content = canvas.append('g')
 			.attr('class', 'content')
@@ -334,7 +420,7 @@
 			.attr('class', 'node')
 			.attr('r', function(d, i) {
 				if(d.fixed)
-					return 50;
+					return 5;
 				else
 					return radius;	
 			})
@@ -359,12 +445,12 @@
 			
 
 		function tick() {
-			link
+/*			link
 				.attr("x1", function(d) { return d.source.x; })
 				.attr("y1", function(d) { return d.source.y; })
 				.attr("x2", function(d) { return d.target.x; })
 				.attr("y2", function(d) { return d.target.y; });
-
+*/
 			node.attr('transform', function(d, i) {
 				return 'translate(' + d.x + ',' + d.y + ')';
 			})
@@ -398,7 +484,7 @@
 				
 
 	</script>
-	-->
+-->
 
 
 </body>
