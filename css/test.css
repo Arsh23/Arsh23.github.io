@@ -1,0 +1,117 @@
+
+@import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400|Quicksand:300,400|Raleway:100,300');
+
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Muli:400,700|Nunito+Sans:400,700|Oxygen:400,700|Poppins:400,700|Work+Sans:400,700');
+
+body {
+    background-color: #1f1f1f;
+    /* background-image: url(/svg/isometric_grid.svg); */
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.main-div {
+    margin-top: 53vh;
+    margin-left: 5vw;
+}
+
+.main-div .img, .main-div .text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main-div .img {
+    transform: scale(0.8);
+}
+
+.text, .img, nav a {
+    color: #8a9395;
+}
+
+.heading {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 70px;
+    font-weight: 400;
+    letter-spacing: -4px;
+}
+
+.subheading {
+    font-family: 'dosis', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: -4px;
+}
+
+nav {
+    font-size: 18px;
+    margin-top: -8px;
+    margin-left: 18px;
+}
+
+#divider {
+    margin-top: -23px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background: #333;
+    /* background-image: linear-gradient(to right, #333, #ccc, #333); */
+}
+
+nav a {
+    font-family: dosis;
+	/*position: relative;*/
+	/*display: inline-block;*/
+	/*margin: 15px 25px;*/
+	outline: none;
+	/* color: #fff; */
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	/*text-shadow: 0 0 1px rgba(255,255,255,0.3);*/
+	/*font-size: 1.35em;*/
+}
+
+nav a:hover,
+nav a:focus {
+	outline: none;
+}
+/* Effect 1: Brackets */
+.cl-effect-1 a::before,
+.cl-effect-1 a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.cl-effect-1 a::before {
+	margin-right: 5px;
+	content: '[';
+	-webkit-transform: translateX(10px);
+	-moz-transform: translateX(10px);
+	transform: translateX(10px);
+}
+
+.cl-effect-1 a::after {
+	margin-left: 5px;
+	content: ']';
+	-webkit-transform: translateX(-10px);
+	-moz-transform: translateX(-10px);
+	transform: translateX(-10px);
+}
+
+.cl-effect-1 a:hover::before,
+.cl-effect-1 a:hover::after,
+.cl-effect-1 a:focus::before,
+.cl-effect-1 a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+}
