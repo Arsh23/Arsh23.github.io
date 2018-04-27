@@ -1,23 +1,37 @@
 
-@import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400|Quicksand:300,400|Raleway:100,300');
+@import url('https://fonts.googleapis.com/css?family=Dosis:100,200,300,400|Quicksand:300,400|Raleway:100,300');
 
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Muli:400,700|Nunito+Sans:400,700|Oxygen:400,700|Poppins:400,700|Work+Sans:400,700');
 
 body {
-    background-color: #1f1f1f;
+    /* background-color: #1f1f1f; */
+    background: #cccccc;
+    /* background: #8f9090; */
     /* background-image: url(/svg/isometric_grid.svg); */
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
 .no-margin {
     margin: 0;
 }
 
+.full-div {
+    background-color: #1f1f1f;
+    height: 100vh;
+    position: relative;
+}
+
 .main-div {
-    margin-top: 53vh;
+    padding-top: 53vh;
     margin-left: 5vw;
 }
 
-.main-div .img, .main-div .text {
+.img, .main-div .text {
     display: inline-block;
     vertical-align: middle;
 }
@@ -27,7 +41,7 @@ body {
 }
 
 .text, .img, nav a {
-    color: #8a9395;
+    color: #8f9090;
 }
 
 .heading {
@@ -37,11 +51,60 @@ body {
     letter-spacing: -4px;
 }
 
+
+.subsection .text .heading {
+    font-family: 'Dosis', sans-serif;
+    font-size: 50px;
+    font-weight: 100;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+    margin-left: 28px;
+    color: #1f1f1f;
+}
+
 .subheading {
     font-family: 'dosis', sans-serif;
     font-size: 30px;
     font-weight: 300;
     margin-top: -4px;
+}
+
+.project {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    color: #333333;
+}
+.project a {
+
+    color: #333333;
+}
+
+.project-head {
+    font-family: 'dosis', sans-serif;
+    font-size: 30px;
+    vertical-align: middle;
+    font-weight: 400;
+    /* margin-top: -4px; */
+    padding-top: 50px;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.project-text {
+    font-family: 'quicksand', sans-serif;
+    font-size: 19px;
+    /* font-weight: 300; */
+    /* margin-top: -4px; */
+}
+.extra-left-pad {
+    padding-left: 15px;
+}
+.project-header {
+    
+    vertical-align: middle;
+}
+object {
+    pointer-events: none;
 }
 
 nav {
@@ -50,8 +113,61 @@ nav {
     margin-left: 18px;
 }
 
+.spacer {
+    height: 40px;
+    /* background-image: url(/svg/triangle.svg); */
+    /* background-size: contain; */
+
+}
+#triangle {
+    transform: scaleX(10);
+    /* width: 100%; */
+    /* height: 40px; */
+}
+
+.down-outer {
+    width: 100%;
+    position: absolute;
+    bottom: 15px;
+    /* padding-bottom: 20px; */
+    text-align:center;
+}
+.down-outer a {
+    font-size: 30px;
+}
+
+#down {
+    /* margin-left: 5vw; */
+    /* text-align:center; */
+    /* margin: auto; */
+    /* padding-left: 1vw; */
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s;
+
+    transform: scale(0.5);
+}
+
+#down:hover {
+    color: #555;
+    transform: scale(0.7);
+}
+
 #divider {
     margin-top: -23px;
+}
+
+#divider1 {
+    margin-top: -20px;
+}
+
+.subsection {
+    padding-top: 10vh;
+    margin-left: 8vw;
+    margin-right: 8vw;
+}
+.bold {
+    font-weight: bold;
 }
 
 hr {
@@ -74,6 +190,13 @@ nav a {
 	font-weight: 400;
 	/*text-shadow: 0 0 1px rgba(255,255,255,0.3);*/
 	/*font-size: 1.35em;*/
+}
+a {
+    text-decoration: none;
+}
+
+.normal-link:hover {
+    text-decoration: underline;
 }
 
 nav a:hover,
