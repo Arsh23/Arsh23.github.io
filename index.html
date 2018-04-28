@@ -3,35 +3,180 @@
 <html>
 
 <head>
-	<title>Portfolio - Arsh</title>
+	<title>Arsh's Homepage</title>
+
+    <!-- <meta name="viewport" content="width=device-width"> -->
+    <!-- <link rel='icon' href='favicon.ico'> -->
+    <link rel='icon' href='favicon.png'>
 
 	<link rel="stylesheet" href="css/main.css">
-    <link rel='icon' href='favicon.ico'>
+    <style>
 
+    </style>
 
 </head>
 
 <body>
-	<!-- <div class="basediv"> -->
 
-	<div class="center-div">
-		<p class="no-margin spacing">
-			<span class="main-text">Hi, I am Arsh</span><br>
-			<!-- <hr class="no-margin"> -->
-			<span class="sub-text">Pythonist &nbsp;&bull;&nbsp; AI Enthusiast
-				&nbsp;&bull;&nbsp; Space Geek</span><br>
-		</p>
-		<hr>
-		<nav class="cl-effect-1" id="cl-effect-1">
-			<a href="http://blog.prdx.me">Blog</a>
-			<a href="https://drive.google.com/file/d/1uTOkRLL3VpbSyD2-Q-VbJANBrr5QiiuQ/view">Resume</a>
-			<a href="mailto:programmer.arsh@gmail.com?Subject=Hi!">Gmail</a>
-			<a href="https://github.com/Arsh23">Github</a>
-			<a href="https://twitter.com/oddanomaly">Twitter</a>
-		</nav>
-		<hr>
+	<div class="full-div">
+        <div class="main-div">
+            <div class='img'>
+                <object data="/svg/hex1.svg" type="image/svg+xml"></object>
+            </div>
+            <div class='text'>
+                <p class="no-margin heading">Hi, I am Arsh</p>
+                <p class="no-margin subheading">Pythonist &nbsp;&bull;&nbsp; AI Enthusiast &nbsp;&bull;&nbsp; Space Geek</p>
+                <!-- <p class="no-margin subheading">Welcome to my little corner on the internet!</p> -->
+            </div>
+            <br>
+            <object id='divider' data="/svg/divider.svg" type="image/svg+xml"></object>
+            <nav class="cl-effect-1" id="cl-effect-1">
+                <a href="http://blog.prdx.me">Blog</a>&nbsp;&nbsp;
+                <a href="#projects">Projects</a>&nbsp;&nbsp;
+                <a href="#about">About me</a>
+            </nav>
+        </div>
+        <div class='down-outer'>
+            <a href='#projects'>
+                <object id='down' data="/svg/down.svg" type="image/svg+xml"></object>
+            </a>
+        </div>
 	</div>
-	<!-- </div> -->
+    <!--  -->
+    <!-- <div class='spacer'> -->
+    <!--     <object id='triangle' data="/svg/triangle.svg" type="image/svg+xml"></object> -->
+    <!-- </div> -->
+
+
+    <!-- <div class='subsection'> -->
+    <!--     <div class='text'> -->
+    <!--         <p class="no-margin heading" id='blog'>Blog</p> -->
+    <!--     </div> -->
+    <!--     <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object> -->
+    <!--     <br> -->
+    <!--     <br> -->
+    <!--     <br> -->
+    <!--  -->
+    <!--     <div class='project cl-effect-1'> -->
+    <!--         <p class='no-margin project-text'> -->
+    <!--         I am extremely inquisitive by nature and have a habit of -->
+    <!--         spending countless hours researching things that interest me, -->
+    <!--         often taking the place of actual work. So I have decided to start -->
+    <!--         this blog and turn those random research spirals into something -->
+    <!--         useful. I aim to write interactive and visualization heavy articles -->
+    <!--         on anything and everything that holds my interest, be it complex -->
+    <!--         algorithms, computational geometry, rocket science, or anything -->
+    <!--         in between! -->
+    <!--         <br> -->
+    <!--         <br> -->
+    <!--         [> <span class='bold'> <] -->
+    <!--         Latest articles: -->
+    <!--         [> </span> <] -->
+    <!--         </p> -->
+    <!--         <br> -->
+    <!--  -->
+    <!--         <p class='no-margin project-text bold'> &nbsp;&nbsp; -->
+    <!--         <a href='http://blog.prdx.me/cvsp/'> -->
+    <!--           &bull; Concurrency vs Parallelism -->
+    <!--         </a> -->
+    <!--         </p> -->
+    <!--     </div> -->
+    <!-- </div> -->
+
+
+
+
+    <div class='subsection'>
+        <div class='text'>
+            <p class="no-margin heading" id='projects'>Projects</p>
+        </div>
+        <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object>
+
+        <div class='project first'>
+            <p class='no-margin project-text'>
+            Working on side projects is one of my favorite thing to do, 
+            and I always have some cool and weird projects going on.
+            Here are some of the past projects I have worked on:
+            </p>
+        </div>
+
+        <div class='project'>
+            <p class='no-margin project-head cl-effect-1'>
+                <a href='https://github.com/Arsh23/async-crawler'>
+                    <span class='bold'>&gt;</span> Async Crawler
+                </a>
+            </p>
+            <p class='no-margin extra-left-pad project-text'>
+            A crawler that uses python coroutines to implement cooperative 
+            multitasking, requesting webpages and writing to 
+            MongoDB asynchronously.
+            </p>
+        </div>
+        <div class='project'>
+            <p class='no-margin project-head cl-effect-1'>
+                <a href='https://github.com/Arsh23/twitter-analysis'>
+                    <span class='bold'>&gt;</span> Twitter Analysis
+                </a>
+            </p>
+            <p class='no-margin extra-left-pad project-text'>
+            Analysis of 5 police accounts of major Indian cities for their 
+            engagement, frequency, top hashtags and sentiments.
+            </p>
+        </div>
+        <div class='project'>
+            <p class='no-margin project-head cl-effect-1'>
+                <a href='https://github.com/Arsh23/tictactoe'>
+                    <span class='bold'>&gt;</span> TicTacToe Bot
+                </a>
+            </p>
+            <p class='no-margin extra-left-pad project-text'>
+            Wrote a bot to play TicTacToe with the user using minimax algorithm, 
+            optimized with alpha-beta pruning.
+            </p>
+        </div>
+
+
+    </div>
+
+    <div class='subsection'>
+        <div class='text'>
+            <p class="no-margin heading" id='about'>About Me</p>
+        </div>
+        <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object>
+
+        <div class='project first'>
+            <p class='no-margin project-text'>
+            I am inquisitive by nature and have a love of all things complex.
+            When I am not trying to solve problems through writing code, I love 
+            creating visual stories with data.
+            For the past 5 years, I has been working with Python and like 
+            tinkering with low level architecture, or complex systems.
+            Minimal design aesthetics are my jam.
+            I also help organize the Delhi chapter of PyData, and enjoy interacting
+            with the local python community.
+            <br>
+            <br>
+            You can get in touch with me through 
+            <span class='bold'>twitter at </span>
+            <a href='https://twitter.com/oddanomaly' class='normal-link bold'> @oddanomaly</a> 
+            , or shoot me a mail at 
+            <a href='mailto:hi@prdx.me' class='normal-link bold'>hi@prdx.me</a>.
+            <br>
+            <br>
+            Apart from programming, I have an avid interest in Photography.
+            You can find my pictures at 
+            <a href='https://www.instagram.com/oddanomaly/' class='normal-link bold'>@oddanomaly </a>
+            <span class='bold'>on instagram</span>
+            . I also sometimes dabble wtih music, the kinda cool parts of which
+            can be found on 
+            <a href='https://soundcloud.com/user-628577826' class='normal-link bold'>my soundcloud</a> (stuff coming soon :P)
+            </p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
 </body>
 
