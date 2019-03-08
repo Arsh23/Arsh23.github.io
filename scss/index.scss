@@ -1,19 +1,23 @@
 @font-face {
     font-family: range-regular;
+    font-display: swap;
     src: url(../fonts/range-regular-webfont.woff) format("woff2"),
          url(../fonts/range-regular-webfont.ttf) format("truetype");
 }
 @font-face {
     font-family: range-semibold;
+    font-display: swap;
     src: url(../fonts/range-semibold-webfont.woff) format("woff2"),
          url(../fonts/range-semibold-webfont.ttf) format("truetype");
 }
 @font-face {
     font-family: dosis-regular;
+    font-display: swap;
     src: url(../fonts/Dosis.ttf) format("truetype");
 }
 @font-face {
     font-family: dosis-semibold;
+    font-display: swap;
     src: url(../fonts/Dosis-SemiBold.ttf) format("truetype");
 }
 
