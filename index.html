@@ -1,183 +1,237 @@
 <!DOCTYPE html>
-
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+        <title>Arsh's Homepage</title>
 
-<head>
-	<title>Arsh's Homepage</title>
+        <!-- prefetch stuff -->
+        <link rel="dns-prefetch" href="https://prdx.me">
+        <link rel="subresource" href="index.css">
+        <link rel="preload" href="fonts/range-regular-webfont.woff" as="font">
+        <link rel="preload" href="fonts/range-semibold-webfont.woff" as="font">
+        <link rel="preload" href="fonts/Dosis.ttf" as="font">
+        <link rel="preload" href="fonts/Dosis-SemiBold.ttf" as="font">
 
-    <!-- <meta name="viewport" content="width=device-width"> -->
-    <!-- <link rel='icon' href='favicon.ico'> -->
-    <link rel='icon' href='favicon.png'>
+        <!-- Theme Color for Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#1e1e1e">
 
-	<link rel="stylesheet" href="css/main.css">
-    <style>
+        <!-- icons stuff -->
+        <link rel="icon" sizes="192x192" href="favicon.png">
+        <link rel="apple-touch-icon" href="favicon.png">
+        <link rel="mask-icon" href="favicon.png" color='black'>
 
-    </style>
+        <!-- meta data -->
+        <meta name="description" content="Hi, I am Arsh. These are some of my blogs and projects">
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <link rel="me" href="mailto:hi@prdx.me">
+        <link rel="author" href="Arsh">
 
-</head>
+        <!-- opengraph social -->
+        <meta property="og:url" content="https://prdx.me">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Arsh's Homepage">
+        <meta property="og:image" content="favicon.png">
+        <meta property="og:description" content="Hi, I am Arsh. These are some of my blogs and projects">
+        <meta property="og:site_name" content="prdx.me">
+        <meta property="og:locale" content="en_US">
+        <meta property="article:author" content="Arsh">
 
-<body>
+        <!-- twitter cards social -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@prdxblog">
+        <meta name="twitter:creator" content="@oddanomaly">
+        <meta name="twitter:url" content="https://prdx.me">
+        <meta name="twitter:title" content="Arsh's Homepage">
+        <meta name="twitter:description" content="Hi, I am Arsh. These are some of my blogs and projects">
+        <meta name="twitter:image" content="favicon.png">
+        <meta name="twitter:dnt" content="on">
 
-	<div class="full-div">
-        <div class="main-div">
-            <div class='img'>
-                <object data="/svg/hex1.svg" type="image/svg+xml"></object>
-            </div>
+        <!-- google social -->
+        <meta itemprop="name" content="Arsh's Homepage">
+        <meta itemprop="description" content="Hi, I am Arsh. These are some of my blogs and projects">
+        <meta itemprop="image" content="favicon.png">
+
+        <!-- css files -->
+        <link rel="stylesheet" href="css/index.css" type="text/css">         
+    </head>
+    <body>
+
+        <div class='home'>
+            <Object class='hex-bg' data="svg/hex-bg.svg" type="image/svg+xml"></object>
             <div class='text'>
-                <p class="no-margin heading">Hi, I am Arsh</p>
-                <p class="no-margin subheading">Pythonist &nbsp;&bull;&nbsp; AI Enthusiast &nbsp;&bull;&nbsp; Space Geek</p>
-                <!-- <p class="no-margin subheading">Welcome to my little corner on the internet!</p> -->
+                <p class='header'>
+                    PRDX<span class='dot'>.</span>ME
+                </p>
+                <p class='sub-header'>
+                    Hi, I am <span class='name'>Arsh</span>. 
+                    Welcome to my corner on the internet!
+                </p>
+                <div class='menu'>
+					<nav class="cl-effect-1" id="cl-effect-1">
+						<a href="#blog">BLOG</a>
+						<a href="#projects">PROJECTS</a>
+                        <a href="#about">ABOUT ME</a>
+                        <a href="https://twitter.com/oddanomaly/">
+                            <Object class='icon' data="svg/twitter.svg" type="image/svg+xml"></object>
+                        </a>
+                        <a href="mailto:hi@prdx.me">
+                            <Object class='icon' data="svg/email.svg" type="image/svg+xml"></object>
+                        </a>
+                        <a href="https://www.instagram.com/oddanomaly/">
+                            <Object class='icon' data="svg/instagram.svg" type="image/svg+xml"></object>
+                        </a>
+                        <a href="https://github.com/arsh23">
+                            <Object class='icon' data="svg/github.svg" type="image/svg+xml"></object>
+                        </a>
+					</nav> 
+                </div>
             </div>
-            <br>
-            <object id='divider' data="/svg/divider.svg" type="image/svg+xml"></object>
-            <nav class="cl-effect-1" id="cl-effect-1">
-                <a href="http://blog.prdx.me">Blog</a>&nbsp;&nbsp;
-                <a href="#projects">Projects</a>&nbsp;&nbsp;
-                <a href="#about">About me</a>
-            </nav>
-        </div>
-        <div class='down-outer'>
-            <a href='#projects'>
-                <object id='down' data="/svg/down.svg" type="image/svg+xml"></object>
+            <a class='down-arrow' href="#blog">
+                <Object class='icon' data="svg/angle-down.svg" type="image/svg+xml"></object>
             </a>
         </div>
-	</div>
-    <!--  -->
-    <!-- <div class='spacer'> -->
-    <!--     <object id='triangle' data="/svg/triangle.svg" type="image/svg+xml"></object> -->
-    <!-- </div> -->
+        <div class='main'>
+
+            <p class='heading' id='blog'>BLOG</p>
+            <p class='sub-heading'>
+                I sometimes write articles that try to use visualizations to explain random
+                concepts in depth.  Here are some recent articles:
+            </p>
+
+            <div class='row'>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        Concurrency and Parallelism
+                        <span class='date'>03/2018</span>
+                    </p>
+                    <p class='desc'>
+                        An attempt to visually explain the difference between
+                        concurrency and parallelism
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='http://blog.prdx.me/cvsp/'>Read</a>
+                    </p>
+                </div>
+            </div>
+
+            <p class='heading' id='projects'>PROJECTS</p>
+            <p class='sub-heading'>
+                Working on side projects is one of my favorite thing to do, and I always have some
+                going on. Here are some of my recent projects:
+            </p>
+
+            <div class='row'>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        Parser Combinators
+                        <span class='date'>2018</span>
+                    </p>
+                    <p class='desc'>
+                    A proof-of-concept parser combinator library built from scratch in python,
+                    along with parsers built using it for parsing algebraic expressions and JSON
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='https://github.com/Arsh23/parser_combinators'>Github</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        CTF Tournament Server 
+                        <span class='date'>2018</span>
+                    </p>
+                    <p class='desc'>
+                    A Capture-the-flag style tournament server containing 
+                    challenges for people to solve
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='http://ctf.prdx.me'>Website</a>
+                    </p>
+                </div>
+            </div>
+
+            <p class='sub-heading'>
+                <br>
+                Older Projects I have worked on:
+            </p>
+
+            <div class='row'>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        Twitter Analysis
+                        <span class='date'>2017</span>
+                    </p>
+                    <p class='desc'>
+                    Analysis of 5 police accounts of major Indian cities for their 
+                    engagement, frequency, top hashtags and sentiments.
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='https://github.com/Arsh23/twitter-analysis'>Github</a>
+                        <a href='http://precogsummer-arsh.herokuapp.com/'>Website</a>
+                    </p>
+                </div>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        TicTacToe Bot
+                        <span class='date'>2017</span>
+                    </p>
+                    <p class='desc'>
+                    A bot to play TicTacToe with the user using minimax algorithm, 
+                    optimized with alpha-beta pruning.
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='https://github.com/Arsh23/tictactoe'>Github</a>
+                        <a href=''>Website</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='box'>
+                    <p class='header'>
+                        <span class='arrow'>&gt; </span>
+                        Async Crawler
+                        <span class='date'>2016</span>
+                    </p>
+                    <p class='desc'>
+                     A crawler that uses python coroutines to implement cooperative 
+                     multitasking, requesting webpages and writing to MongoDB asynchronously.
+                    </p>
+                    <p class='links cl-effect-1'>
+                        <a href='https://github.com/Arsh23/async-crawler'>Github</a>
+                    </p>
+                </div>
+                <div class='box empty'>&nbsp;</div>
+            </div>
 
 
-    <!-- <div class='subsection'> -->
-    <!--     <div class='text'> -->
-    <!--         <p class="no-margin heading" id='blog'>Blog</p> -->
-    <!--     </div> -->
-    <!--     <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object> -->
-    <!--     <br> -->
-    <!--     <br> -->
-    <!--     <br> -->
-    <!--  -->
-    <!--     <div class='project cl-effect-1'> -->
-    <!--         <p class='no-margin project-text'> -->
-    <!--         I am extremely inquisitive by nature and have a habit of -->
-    <!--         spending countless hours researching things that interest me, -->
-    <!--         often taking the place of actual work. So I have decided to start -->
-    <!--         this blog and turn those random research spirals into something -->
-    <!--         useful. I aim to write interactive and visualization heavy articles -->
-    <!--         on anything and everything that holds my interest, be it complex -->
-    <!--         algorithms, computational geometry, rocket science, or anything -->
-    <!--         in between! -->
-    <!--         <br> -->
-    <!--         <br> -->
-    <!--         [> <span class='bold'> <] -->
-    <!--         Latest articles: -->
-    <!--         [> </span> <] -->
-    <!--         </p> -->
-    <!--         <br> -->
-    <!--  -->
-    <!--         <p class='no-margin project-text bold'> &nbsp;&nbsp; -->
-    <!--         <a href='http://blog.prdx.me/cvsp/'> -->
-    <!--           &bull; Concurrency vs Parallelism -->
-    <!--         </a> -->
-    <!--         </p> -->
-    <!--     </div> -->
-    <!-- </div> -->
+            <!-- <p class='heading' id='about'>ABOUT ME</p> -->
 
-
-
-
-    <div class='subsection'>
-        <div class='text'>
-            <p class="no-margin heading" id='projects'>Projects</p>
         </div>
-        <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object>
 
-        <div class='project first'>
-            <p class='no-margin project-text'>
-            Working on side projects is one of my favorite thing to do, 
-            and I always have some cool and weird projects going on.
-            Here are some of the past projects I have worked on:
+        <div class='footer'>
+            <p class='footer-text footer-desc'>
+                Made with 
+                <span class='heart'>
+                    <Object class='icon' data="svg/heart.svg" type="image/svg+xml"></object>
+                </span>
+                by me!
+            </p>
+            <p class='footer-text cl-effect-1 footer-links'>
+                <a href='https://github.com/Arsh23/Arsh23.github.io'>Github</a>
+                <a href='mailto:hi@prdx.me'>Email</a>
             </p>
         </div>
 
-        <div class='project'>
-            <p class='no-margin project-head cl-effect-1'>
-                <a href='https://github.com/Arsh23/async-crawler'>
-                    <span class='bold'>&gt;</span> Async Crawler
-                </a>
-            </p>
-            <p class='no-margin extra-left-pad project-text'>
-            A crawler that uses python coroutines to implement cooperative 
-            multitasking, requesting webpages and writing to 
-            MongoDB asynchronously.
-            </p>
-        </div>
-        <div class='project'>
-            <p class='no-margin project-head cl-effect-1'>
-                <a href='https://github.com/Arsh23/twitter-analysis'>
-                    <span class='bold'>&gt;</span> Twitter Analysis
-                </a>
-            </p>
-            <p class='no-margin extra-left-pad project-text'>
-            Analysis of 5 police accounts of major Indian cities for their 
-            engagement, frequency, top hashtags and sentiments.
-            </p>
-        </div>
-        <div class='project'>
-            <p class='no-margin project-head cl-effect-1'>
-                <a href='https://github.com/Arsh23/tictactoe'>
-                    <span class='bold'>&gt;</span> TicTacToe Bot
-                </a>
-            </p>
-            <p class='no-margin extra-left-pad project-text'>
-            Wrote a bot to play TicTacToe with the user using minimax algorithm, 
-            optimized with alpha-beta pruning.
-            </p>
-        </div>
-
-
-    </div>
-
-    <div class='subsection'>
-        <div class='text'>
-            <p class="no-margin heading" id='about'>About Me</p>
-        </div>
-        <object id='divider1' data="/svg/divider1.svg" type="image/svg+xml"></object>
-
-        <div class='project first'>
-            <p class='no-margin project-text'>
-            I am inquisitive by nature and have a love of all things complex.
-            When I am not trying to solve problems through writing code, I love 
-            creating visual stories with data.
-            For the past 5 years, I has been working with Python and like 
-            tinkering with low level architecture, or complex systems.
-            Minimal design aesthetics are my jam.
-            I also help organize the Delhi chapter of PyData, and enjoy interacting
-            with the local python community.
-            <br>
-            <br>
-            You can get in touch with me through 
-            <span class='bold'>twitter at </span>
-            <a href='https://twitter.com/oddanomaly' class='normal-link bold'> @oddanomaly</a> 
-            , or shoot me a mail at 
-            <a href='mailto:hi@prdx.me' class='normal-link bold'>hi@prdx.me</a>.
-            <br>
-            <br>
-            Apart from programming, I have an avid interest in Photography.
-            You can find my pictures at 
-            <a href='https://www.instagram.com/oddanomaly/' class='normal-link bold'>@oddanomaly </a>
-            <span class='bold'>on instagram</span>
-            . I also sometimes dabble wtih music, the kinda cool parts of which
-            can be found on 
-            <a href='https://soundcloud.com/user-628577826' class='normal-link bold'>my soundcloud</a> (stuff coming soon :P)
-            </p>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-
-</body>
-
+    </body>
 </html>
+

@@ -1,0 +1,270 @@
+@font-face {
+    font-family: range-regular;
+    src: url(../fonts/range-regular-webfont.woff) format("woff2"),
+         url(../fonts/range-regular-webfont.ttf) format("truetype");
+}
+@font-face {
+    font-family: range-semibold;
+    src: url(../fonts/range-semibold-webfont.woff) format("woff2"),
+         url(../fonts/range-semibold-webfont.ttf) format("truetype");
+}
+@font-face {
+    font-family: dosis-regular;
+    src: url(../fonts/Dosis.ttf) format("truetype");
+}
+@font-face {
+    font-family: dosis-semibold;
+    src: url(../fonts/Dosis-SemiBold.ttf) format("truetype");
+}
+
+
+@mixin set-vw($property, $px) { 
+    #{$property}: $px*1px;
+    #{$property}: ($px/16)*1rem;
+    #{$property}: ($px/1920)*100vw; 
+}
+@mixin set-rem($property, $px) {
+    #{$property}: $px*1px;
+    #{$property}: ($px/16)*1rem;
+}
+
+
+$white: #d9d9d9;
+$white-bg: #f9f9f9;
+$red: #d75252;
+$cyan: #23dcdc;
+$light-yellow: #c9baa7;
+$dark-grey: #1e1e1e;
+$medium-grey: #727779;
+$light-grey: #b3b3b3;
+
+html {
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background: $white-bg;
+}
+.home {
+    height:100%;
+    background-color: $dark-grey;
+    overflow: hidden;
+    position: relative;
+    .hex-bg {
+        bottom: -3px;
+        position: absolute;
+        height: 80vmin;
+    }
+    .text {
+        position: absolute;
+        margin-top: 70vh;
+        @include set-vw(margin-left, 200);
+
+        .header {
+            color: $white;
+            font-family: range-semibold;
+            margin: 0;
+            margin-left: -2px;
+            @include set-rem(font-size, 55);
+            .dot { 
+                color: $red;
+            }
+        }
+        .sub-header {
+            color: $white;
+            font-family: range-regular;
+            margin: 0;
+            @include set-rem(margin-top, 15);
+            @include set-rem(font-size, 20);
+            .name { 
+                color: $cyan;
+                font-family: range-semibold;
+            }
+        }
+        .menu {
+            font-family: dosis-regular;
+            margin-left: -10px;
+            @include set-rem(margin-top, 15);
+            a {
+                color: $light-yellow;
+                outline: none;
+                text-decoration: none;
+                letter-spacing: 1px;
+                @include set-rem(font-size, 16);
+            }
+            a:hover, a:focus {
+                outline: none;
+            }
+            object{
+                pointer-events: none;
+            }
+            
+        }
+    }
+    .down-arrow {
+        position: absolute;
+        color: $medium-grey;
+        left: 48vw;
+        @include set-rem(font-size, 25);
+        @include set-rem(bottom, 10);
+        object{
+            pointer-events: none;
+        }
+    }
+}
+.icon {
+    position: relative;
+    top: 0.125em;
+    height: 1em;
+}
+.main {
+    max-width: 1024px;
+    @include set-vw(margin-left, 200);
+    @include set-vw(margin-right, 400);
+    .heading {
+        margin-bottom: 0;
+        font-family: dosis-semibold;
+        color: $dark-grey;
+        @include set-rem(font-size, 36);
+        @include set-rem(margin-top, 100);
+    }
+    .sub-heading {
+        margin-bottom: 0;
+        font-family: range-regular;
+        color: $medium-grey;
+        @include set-rem(font-size, 16);
+        @include set-rem(margin-top, 40);
+        @include set-vw(margin-left, 50);
+        @include set-vw(margin-right, 50);
+    }
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.box {
+    flex-grow: 1;
+    flex-basis: 50%;
+    font-family: range-regular;
+    @include set-rem(font-size, 16);
+    @include set-vw(margin-left, 50);
+    @include set-vw(margin-right, 50);
+    @include set-rem(margin-top, 60);
+    .header, .desc, .links {
+        margin-bottom: 0;
+        @include set-rem(margin-top, 7);
+    }
+    .header {
+        font-family: range-semibold;
+        color: $dark-grey;
+        .arrow {
+            color: $red;
+        }
+        .date {
+            color: $light-grey;
+            font-family: range-regular;
+        }
+    }
+    .desc {
+        color: $medium-grey;
+        @include set-rem(margin-left, 14);
+    }
+    .links a {
+        color: $cyan;
+        // color: $light-yellow;
+        @include set-rem(font-size, 14);
+        margin-left: 4px;
+    }
+
+}
+.footer {
+    @include set-rem(margin-top, 100);
+    @include set-rem(height, 40);
+    @include set-vw(padding-left, 200);
+    @include set-vw(padding-right, 200);
+    background-color: $dark-grey;
+    display: flex;
+    .footer-text {
+        color: $medium-grey;
+        font-family: range-regular;
+        @include set-rem(font-size, 14);
+        flex: 1;
+        .heart {
+            color: $red;
+        }
+    }
+    .footer-desc {
+        text-align: left; 
+    }
+    .footer-links {
+        flex-grow: 1;
+        text-align: right; 
+        a {
+            color: $medium-grey;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 10px;
+    }
+    .main {
+        @include set-vw(margin-right, 200);
+    }
+    .row {
+        flex-direction: column;
+    }
+    .empty {
+        display: none;
+    }
+}
+@media only screen and (max-width: 400px) {
+    html {
+        font-size: 9px;
+    }
+    .home .text {
+        // margin-top: 60vh;
+    }
+}
+/* Effect 1: Brackets */
+.cl-effect-1 a::before,
+.cl-effect-1 a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.cl-effect-1 a::before {
+	margin-right: 5px;
+	content: '[';
+	-webkit-transform: translateX(10px);
+	-moz-transform: translateX(10px);
+	transform: translateX(10px);
+}
+
+.cl-effect-1 a::after {
+	margin-left: 5px;
+	content: ']';
+	-webkit-transform: translateX(-10px);
+	-moz-transform: translateX(-10px);
+	transform: translateX(-10px);
+}
+
+.cl-effect-1 a:hover::before,
+.cl-effect-1 a:hover::after,
+.cl-effect-1 a:focus::before,
+.cl-effect-1 a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+}
