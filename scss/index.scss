@@ -77,6 +77,7 @@ body {
             @include set-rem(font-size, 55);
             .dot { 
                 color: $red;
+                font-weight: bold;
             }
         }
         .sub-header {
@@ -88,6 +89,7 @@ body {
             .name { 
                 color: $cyan;
                 font-family: range-semibold;
+                font-weight: bold;
             }
         }
         .menu {
